@@ -42,7 +42,7 @@ const AppHeader = ({isCollapsed, onToggleSidebar}) => {
 
           <Tag
                 className={'course'}
-              color={'#0014f6'}
+              color={'#FF5B00'}
           >{data?.price} $</Tag>
       </div>
       {/*<div className='app-header-section-mobile'>*/}

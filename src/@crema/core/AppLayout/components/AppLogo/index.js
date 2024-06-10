@@ -8,9 +8,9 @@ const AppLogo = ({hasSidebarColor}) => {
   return (
     <div className='app-logo'>
       {hasSidebarColor && sidebarColorSet.mode === 'dark' ? (
-        <img src={logo} alt='wonderful-logo' />
+        <img src={logo} alt='sun-logo' />
       ) : (
-        <img src={logo} alt='wonderful-logo' />
+        <img src={logo} alt='sun-logo' />
       )}
     </div>
   );

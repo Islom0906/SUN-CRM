@@ -168,8 +168,9 @@ const SellingTable = ({data,refetch,setPdfId,setIsLoadingPdf}) => {
                     <Button
                         disabled={record.status===3}
                         onClick={() => CreatePDF(record.id)}
-                        type='outline'
-                        icon={<FaFilePdf/>}>
+                        icon={<FaFilePdf />}
+                        style={{backgroundColor:'#FF5B00'}}
+                    >
 
                     </Button>
 
@@ -222,8 +223,6 @@ const SellingTable = ({data,refetch,setPdfId,setIsLoadingPdf}) => {
                                 </Form.Item>
                             </Col>
                         </Row>
-
-
                     </Form>
                 }
             </Modal>

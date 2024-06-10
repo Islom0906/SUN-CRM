@@ -6,15 +6,14 @@ import MontserratSemiBold from '../../../assets/fonts/Montserrat-SemiBold.ttf'
 import MontserratMedium from '../../../assets/fonts/Montserrat-Medium.ttf'
 import moment from "moment";
 import logo from '../../../assets/logo-pdf.png'
-import location from '../../../assets/location-crm.png'
-import wonderfullCity from '../../../assets/wonderful-city-img.jpg'
-import mapPinned from '../../../assets/pdf-icon/map-pinned.png'
-import building from '../../../assets/pdf-icon/building-2.png'
-import trees from '../../../assets/pdf-icon/trees.png'
-import sofa from '../../../assets/pdf-icon/sofa.png'
-import gamepad from '../../../assets/pdf-icon/gamepad-2.png'
-import parking from '../../../assets/pdf-icon/circle-parking.png'
-import image11 from '../../../assets/11.jpg'
+import location from '../../../assets/location-crm.jpg'
+import sunCity from '../../../assets/login-page.jpg'
+import parking from '../../../assets/pdf-icon/free-icon-vehicle-7162285 1.png'
+import building from '../../../assets/pdf-icon/high-quality 1.png'
+import smartCity from '../../../assets/pdf-icon/smart-city 1.png'
+import locationService from '../../../assets/pdf-icon/location 1.png'
+import camera from '../../../assets/pdf-icon/free-icon-cctv 1.png'
+
 
 
 // Register fonts
@@ -32,7 +31,7 @@ Font.register({
 const styles = StyleSheet.create({
     dashed: {
         width: "100%",
-        borderBottom: "1px dashed #553248",
+        borderBottom: "1px dashed #FF5B00",
         flex: '1 1 0%'
     },
     body: {
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     },
     title_gold: {
         fontSize: 14,
-        color: '#553248',
+        color: '#FF5B00',
         fontFamily: 'Montserrat',
         fontWeight: 'bold'
     },
@@ -66,12 +65,28 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         fontWeight:'bold',
         textAlign: 'center',
-        color: '#553248',
+        color: '#FF5B00',
+    },
+    title_number:{
+        fontSize: 12,
+        fontFamily: 'Montserrat',
+        fontWeight:'bold',
+        textAlign: 'center',
+        color: '#FF5B00',
+        position:'absolute',
+        bottom:0
     },
     listItem: {
         color: '#918C86',
         fontSize: 10,
         fontFamily: 'Montserrat',
+    },
+    listItemText: {
+        color: '#FF5B00',
+        fontSize: 10,
+        textAlign: "center",
+        fontFamily: 'Montserrat',
+        wordBreak:'break-word'
     },
     marginSmY: {
         marginVertical: 3,
@@ -88,8 +103,8 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
     },
     logo: {
-        height: 70,
-        width: 70,
+        height: 40,
+        width: 200,
         objectFit: 'contain'
     },
     imageBg: {
@@ -105,21 +120,26 @@ const styles = StyleSheet.create({
         marginTop:'20px'
     },
     iconList: {
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        justifyContent:'center'
     },
 
     iconBox: {
         display: "flex",
         alignItems: "center",
-        flexDirection: 'row',
+        flexDirection: 'col',
 
     },
     icon: {
-        width: 20,
-        height: 20,
+        width: '28px',
+        height: '28px',
         objectFit: 'contain',
-        objectPosition: 'center',
-        marginRight: 4
+        objectPosition: 'center'
+    },
+    iconParent: {
+        padding: '10px',
+        borderRadius: '100%',
+        backgroundColor: '#FF5B00'
     },
     iconBg: {
         width: '100%',
@@ -127,7 +147,11 @@ const styles = StyleSheet.create({
         objectPosition: 'center',
         height: 500
     },
-
+    line: {
+        width: 20,
+        height: '0.5px',
+        backgroundColor: '#d6b87b'
+    },
     //     TABLE
 
     table: {
@@ -136,7 +160,7 @@ const styles = StyleSheet.create({
         marginBottom:'15px',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: '#553248',
+        borderColor: '#FF5B00',
         borderRightWidth: 0,
         borderBottomWidth: 0,
     },
@@ -148,7 +172,7 @@ const styles = StyleSheet.create({
     tableCol: {
         width: '50%',
         borderStyle: 'solid',
-        borderColor: '#553248',
+        borderColor: '#FF5B00',
         borderWidth: 1,
         borderLeftWidth: 0,
         borderTopWidth: 0,
@@ -156,7 +180,7 @@ const styles = StyleSheet.create({
     tableColRight: {
         width: '50%',
         borderStyle: 'solid',
-        borderColor: '#553248',
+        borderColor: '#FF5B00',
         borderWidth: 1,
         borderLeftWidth: 0,
         borderTopWidth: 0,
@@ -164,7 +188,10 @@ const styles = StyleSheet.create({
     },
     tableHeader: {
         // width:'100%',
-        backgroundColor: '#553248',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center',
+        backgroundColor: '#FF5B00',
         padding: "1px 0 4px 0",
         color: 'white',
         fontFamily: 'Montserrat'
@@ -177,15 +204,23 @@ const styles = StyleSheet.create({
     },
     tableList: {
         paddingVertical: 5,
-        color: '#4F4F4F',
+        color: '#000',
         borderBottom: 1,
-        borderColor: '#4F4F4F',
+        borderColor: '#000',
         fontSize: 12
     },
     bottomInfo: {
         paddingVertical: 5,
         color: '#000',
         fontSize: 12
+    },
+    borderRight:{
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        borderWidth: 1,
+        borderLeftWidth: 0,
+        borderTopWidth: 0,
+        borderBottom:0
     }
 });
 
@@ -193,30 +228,25 @@ export default function CreatPDF({data}) {
 
     const listIcon = [
         {
-            icon: mapPinned,
-            title: 'Идеальное расположение'
+            icon: parking,
+            title: 'Современная парковка'
         },
         {
             icon: building,
-            title: 'Уникальные проекты '
+            title: 'Высокое качество'
         },
         {
-            icon: trees,
-            title: 'Впечатляющая архитектура '
+            icon: smartCity,
+            title: 'Удобная инфраструктура'
         },
         {
-            icon: sofa,
-            title: 'Роскошное Лобби'
+            icon: locationService,
+            title: 'Удобное расположение'
         },
         {
-            icon: gamepad,
-            title: '50.000 кв метров Торгово Развлекательный Центр'
+            icon: camera,
+            title: 'Охраняемая зона'
         },
-        {
-            icon: parking,
-            title: 'Подземный паркинг'
-        },
-
     ]
 
 
@@ -225,7 +255,6 @@ export default function CreatPDF({data}) {
             <Page size={'A4'} style={styles.body}>
                 <View style={styles.center}>
                     <Image style={styles.logo} src={logo}/>
-
                 </View>
                 <View style={styles.row}>
                     <View style={styles.widthHalf}>
@@ -301,7 +330,7 @@ export default function CreatPDF({data}) {
                     </View>
                     <View style={styles.widthHalf}>
                         <Text style={[styles.title_gold, styles.marginY]}>
-                            Стоимость
+                            Дополнительная информация
                         </Text>
                         <View style={[styles.row, styles.marginSmY, styles.listItem]}>
                             <Text>
@@ -365,14 +394,14 @@ export default function CreatPDF({data}) {
                            src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentFloorImage}`}
                     />
                     <View style={{...styles.row,marginTop:'10px'}}>
-                        <Image style={[styles.imageBg, styles.widthHalf]} src={wonderfullCity}/>
+                        <Image style={[styles.imageBg, styles.widthHalf]} src={sunCity}/>
                         <Image style={[styles.imageBg, styles.widthHalf]} src={location}/>
                     </View>
                 </View>
 
                 <View style={[styles.center, styles.marginY]}>
-                    <Text style={styles.title}>
-                        +99871 205 02 03
+                    <Text style={styles.title_number}>
+                        +998 78 150 55 00
                     </Text>
                 </View>
             </Page>
@@ -391,9 +420,22 @@ export default function CreatPDF({data}) {
                         <View style={[styles.row, styles.iconList]}>
                             {
                                 listIcon.map(item => (
-                                    <View key={item?.icon} style={[styles.iconBox, {...styles.widthHalf,marginBottom:'15px',gap:"10px"}]}>
-                                        <Image style={styles.icon} src={item.icon}/>
-                                        <Text style={styles.listItem}>
+                                    <View key={item?.icon}
+                                          style={[styles.iconBox, {width: '33%', marginBottom: '15px', gap: "10px"}]}>
+                                        <View style={{
+                                            display: "flex",
+                                            alignItems: 'center',
+                                            gap: '10px',
+                                            flexDirection: 'row',
+                                        }}>
+                                            <View style={styles.line}></View>
+                                            <View style={styles.iconParent}>
+                                                <Image style={styles.icon} src={item.icon}/>
+                                            </View>
+                                            <View style={styles.line}></View>
+
+                                        </View>
+                                        <Text style={styles.listItemText}>
                                             {item.title}
                                         </Text>
                                     </View>
@@ -403,265 +445,287 @@ export default function CreatPDF({data}) {
                     </View>
                 </View>
                 <View>
-                    {/*<Image style={[styles.iconBg, styles.marginY]}*/}
-                    {/*       src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentHouseImage}`}/>*/}
                     <Image style={[styles.iconBg, styles.marginY]}
-                           src={image11}/>
+                           src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentHouseImage}`}/>
+                    {/*<Image style={[styles.iconBg, styles.marginY]}*/}
+                    {/*       src={image11}/>*/}
                 </View>
                 <View style={[styles.center, styles.marginY]}>
-                    <Text style={styles.title}>
-                        +99871 205 02 03
+                    <Text style={styles.title_number}>
+                        +998 78 150 55 00
                     </Text>
                 </View>
             </Page>
             <Page size={'A4'} style={styles.body}>
                 <View style={styles.center}>
                     <Image style={styles.logo} src={logo}/>
-
                 </View>
-                <View style={styles.marginY}>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Проект:
-                            </Text>
-                            <Text>
-                                Wonderful city
-                            </Text>
-                        </View>
 
-                    </View>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Блок
-                            </Text>
-                            <Text>
-                                {data?.slotName}
-                            </Text>
-                        </View>
+                {/*<View style={styles.marginY}>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Проект:*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                 Human2Human*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Дом
-                            </Text>
-                            <Text>
-                                {data?.houseName}
-                            </Text>
-                        </View>
+                {/*    </View>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Блок*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.slotName}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Этаж:
-                            </Text>
-                            <Text>
-                                {data?.floorName}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Номер квартиры:
-                            </Text>
-                            <Text>
-                                {data?.apartmentName}
-                            </Text>
-                        </View>
+                {/*    </View>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Дом*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.houseName}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
+                {/*    </View>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Этаж:*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.floorName}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
+                {/*    </View>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Номер квартиры:*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.apartmentName}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
+
+                {/*    </View>*/}
 
 
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Площадь квартиры (м2):
-                            </Text>
-                            <Text>
-                                {data?.ploshd}
-                            </Text>
-                        </View>
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Площадь квартиры (м2):*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.ploshd}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
-                    <View style={styles.tableList}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text>
-                                Количество комнат:
-                            </Text>
-                            <Text>
-                                {data?.roomCount}
-                            </Text>
-                        </View>
+                {/*    </View>*/}
+                {/*    <View style={styles.tableList}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text>*/}
+                {/*                Количество комнат:*/}
+                {/*            </Text>*/}
+                {/*            <Text>*/}
+                {/*                {data?.roomCount}*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
-                    <View style={{...styles.tableList, marginTop: '10px', fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.listItem]}>
-                            <Text style={{color:"black"}}>
-                                Базовая цена квартиры:
-                            </Text>
-                            <Text style={{color:"black"}}>
-                                {data?.priceDollor} $
-                            </Text>
-                        </View>
+                {/*    </View>*/}
+                {/*    <View style={{...styles.tableList, marginTop: '10px', fontWeight: "bold"}}>*/}
+                {/*        <View style={[styles.row, styles.listItem]}>*/}
+                {/*            <Text style={{color:"black"}}>*/}
+                {/*                Базовая цена квартиры:*/}
+                {/*            </Text>*/}
+                {/*            <Text style={{color:"black"}}>*/}
+                {/*                {data?.priceDollor} $*/}
+                {/*            </Text>*/}
+                {/*        </View>*/}
 
-                    </View>
+                {/*    </View>*/}
 
-                </View>
-                {
-                    data?.payments?.map((payment, ind) => (
-                        <View key={ind} style={styles.table}>
-                            <View style={[styles.tableHeader]}>
-                                <Text style={styles.tableCell}>
-                                    {payment.monthCount === 0 ? '100% предоплата при Инвест договоре' : `Рассрочка при Инвест договоре с ${payment?.fristPay}% ПВ`}
-                                </Text>
-                            </View>
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCol}>
-                                    <Text style={styles.tableCell}> Цена со скидкой {payment?.discount}%</Text>
+                {/*</View>*/}
+                <View style={{marginTop:'30px'}}>
+                    {
+                        data?.payments?.map((payment, ind) => (
+                            <View key={ind} style={styles.table}>
+                                <View style={[styles.tableHeader]}>
+                                    <Text style={{...styles.tableCell,width:'75%',textAlign:"center",...styles.borderRight}}>
+                                        {payment.monthCount === 0 ? '100% предоплата при Инвест договоре' : `Рассрочка при Инвест договоре с ${payment?.fristPay}% ПВ`}
+                                    </Text>
+
+                                    <Text style={{...styles.tableCell,width:'25%',textAlign:'center'}}>
+                                        {Math.ceil(payment?.amountExcludingSkidk/data?.ploshd).toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')}$
+                                    </Text>
                                 </View>
-                                <View style={styles.tableCol}>
-
-                                    <View style={[styles.row]}>
-                                        <View style={styles.tableColRight}>
-                                            <Text style={styles.tableCell}>{payment?.skidka?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
-                                        </View>
-                                        <View style={{width:'50%'}}>
-                                            <Text style={styles.tableCell}>{payment?.skidkaSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={styles.tableRow}>
-                                <View style={styles.tableCol}>
-                                    <Text style={styles.tableCell}> {payment?.fristPay}% предоплата </Text>
-                                </View>
-                                <View style={styles.tableCol}>
-
-                                    <View style={[styles.row]}>
-                                        <View style={styles.tableColRight}>
-                                            <Text style={styles.tableCell}>{payment?.initialPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
-                                        </View>
-                                        <View style={{width:'50%'}}>
-                                            <Text style={styles.tableCell}>{payment?.initialPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>
-                            {
-                                payment?.monthCount>0
-                                &&
                                 <View style={styles.tableRow}>
                                     <View style={styles.tableCol}>
-                                        <Text style={styles.tableCell}> Сумма ежемесячных оплат ({payment?.monthCount})</Text>
+                                        <Text style={styles.tableCell}> Цена со скидкой {payment?.discount}%</Text>
                                     </View>
                                     <View style={styles.tableCol}>
 
                                         <View style={[styles.row]}>
                                             <View style={styles.tableColRight}>
-                                                <Text style={styles.tableCell}>{payment?.monthPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                                <Text style={styles.tableCell}>{payment?.skidka?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
                                             </View>
                                             <View style={{width:'50%'}}>
-                                                <Text style={styles.tableCell}>{payment?.monthPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                                <Text style={styles.tableCell}>{payment?.skidkaSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
-                            }
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCol}>
+                                        <Text style={styles.tableCell}> {payment?.fristPay}% предоплата </Text>
+                                    </View>
+                                    <View style={styles.tableCol}>
 
-                            <View style={[styles.tableRow]}>
-                                <View style={styles.tableCol}>
-                                    <Text style={styles.tableCell}> Итоговая цена</Text>
-                                </View>
-                                <View style={styles.tableCol}>
-
-                                    <View style={[styles.row]}>
-                                        <View style={styles.tableColRight}>
-                                            <Text style={styles.tableCell}>{payment?.amountExcludingSkidk?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                        <View style={[styles.row]}>
+                                            <View style={styles.tableColRight}>
+                                                <Text style={styles.tableCell}>{payment?.initialPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                            </View>
+                                            <View style={{width:'50%'}}>
+                                                <Text style={styles.tableCell}>{payment?.initialPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                            </View>
                                         </View>
-                                        <View style={{width:'50%'}}>
-                                            <Text style={styles.tableCell}>{payment?.amountExcludingSkidkSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                    </View>
+                                </View>
+                                {
+                                    payment?.monthCount>0
+                                    &&
+                                    <View style={styles.tableRow}>
+                                        <View style={styles.tableCol}>
+                                            <Text style={styles.tableCell}> Сумма ежемесячных оплат ({payment?.monthCount})</Text>
+                                        </View>
+                                        <View style={styles.tableCol}>
+
+                                            <View style={[styles.row]}>
+                                                <View style={styles.tableColRight}>
+                                                    <Text style={styles.tableCell}>{payment?.monthPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                                </View>
+                                                <View style={{width:'50%'}}>
+                                                    <Text style={styles.tableCell}>{payment?.monthPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                }
+                                {/*<View style={[styles.tableRow]}>*/}
+                                {/*    <View style={styles.tableCol}>*/}
+                                {/*        <Text style={styles.tableCell}> Цена за квадратный метр</Text>*/}
+                                {/*    </View>*/}
+                                {/*    <View style={styles.tableCol}>*/}
+
+                                {/*        <View style={[styles.row]}>*/}
+                                {/*            <View style={styles.tableColRight}>*/}
+                                {/*                <Text style={styles.tableCell}>{Math.ceil(payment?.amountExcludingSkidk/data?.ploshd).toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>*/}
+                                {/*            </View>*/}
+                                {/*            <View style={{width:'50%'}}>*/}
+                                {/*                <Text style={styles.tableCell}>{payment?.amountExcludingSkidkSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>*/}
+                                {/*            </View>*/}
+                                {/*        </View>*/}
+                                {/*    </View>*/}
+                                {/*</View>*/}
+                                <View style={[styles.tableRow]}>
+                                    <View style={styles.tableCol}>
+                                        <Text style={styles.tableCell}> Итоговая цена</Text>
+                                    </View>
+                                    <View style={styles.tableCol}>
+
+                                        <View style={[styles.row]}>
+                                            <View style={styles.tableColRight}>
+                                                <Text style={styles.tableCell}>{payment?.amountExcludingSkidk?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                            </View>
+                                            <View style={{width:'50%'}}>
+                                                <Text style={styles.tableCell}>{payment?.amountExcludingSkidkSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                            </View>
                                         </View>
                                     </View>
                                 </View>
                             </View>
+                        ))
+                    }
+
+
+                    <View style={{...styles.bottomInfo, marginTop: "10px"}}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Актуальный курс валют
+                            </Text>
+                            <Text>
+                                {data?.kurs}$
+                            </Text>
                         </View>
-                    ))
-                }
 
+                    </View>
+                    <View style={styles.bottomInfo}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Договора заключаются и оплачиваются строго в национальной валюте Узб
+                            </Text>
+                        </View>
 
-                <View style={{...styles.bottomInfo, marginTop: "10px"}}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Актуальный курс валют
-                        </Text>
-                        <Text>
-                            {data?.kurs}$
-                        </Text>
                     </View>
 
-                </View>
-                <View style={styles.bottomInfo}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Договора заключаются и оплачиваются строго в национальной валюте Узб
-                        </Text>
+
+                    <View style={{...styles.bottomInfo, marginTop: "10px", fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Менеджер
+                            </Text>
+                            <Text>
+                                {data?.sellerName}
+                            </Text>
+                        </View>
+
+                    </View>
+                    <View style={{...styles.bottomInfo, fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Контакты
+                            </Text>
+                            <Text>
+                                {data?.sellerPhoneNumber}
+                            </Text>
+                        </View>
+
                     </View>
 
-                </View>
+                    <View style={{...styles.bottomInfo, marginTop: "15px"}}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Дата прайса
+                            </Text>
+                            <Text>
+                                {moment(data?.nowTime).format("DD.MM.YYYY")}
+                            </Text>
+                        </View>
 
+                    </View>
+                    <View style={styles.bottomInfo}>
+                        <View style={[styles.row, styles.listItem]}>
+                            <Text>
+                                Цены действительны до первого повышения
+                            </Text>
+                        </View>
 
-                <View style={{...styles.bottomInfo, marginTop: "10px", fontWeight: "bold"}}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Менеджер
-                        </Text>
-                        <Text>
-                            {data?.sellerName}
-                        </Text>
                     </View>
 
-                </View>
-                <View style={{...styles.bottomInfo, fontWeight: "bold"}}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Контакты
-                        </Text>
-                        <Text>
-                            {data?.sellerPhoneNumber}
+                    <View style={[styles.center, styles.marginY]}>
+                        <Text style={styles.title_number}>
+                            +998 78 150 55 00
                         </Text>
                     </View>
-
                 </View>
 
-                <View style={{...styles.bottomInfo, marginTop: "15px"}}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Дата прайса
-                        </Text>
-                        <Text>
-                            {moment(data?.nowTime).format("DD.MM.YYYY")}
-                        </Text>
-                    </View>
-
-                </View>
-                <View style={styles.bottomInfo}>
-                    <View style={[styles.row, styles.listItem]}>
-                        <Text>
-                            Цены действительны до первого повышения
-                        </Text>
-                    </View>
-
-                </View>
-
-                <View style={[styles.center, styles.marginY]}>
-                    <Text style={styles.title}>
-                        +99871 205 02 03
-                    </Text>
-                </View>
             </Page>
         </Document>
     );
