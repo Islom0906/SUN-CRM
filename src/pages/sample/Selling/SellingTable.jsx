@@ -113,7 +113,7 @@ const SellingTable = ({data,refetch,setPdfId,setIsLoadingPdf}) => {
             render: (text) => <p>{text}м²</p>,
         },
         {
-            title: 'Количество',
+            title: 'Комнаты',
             dataIndex: 'roomCount',
             id: 'roomCount',
             render: (text) => <p>{text}</p>,
@@ -147,9 +147,23 @@ const SellingTable = ({data,refetch,setPdfId,setIsLoadingPdf}) => {
 
         },
         {
-            title: 'Изображение',
+            title: 'Изображение квартиры',
             dataIndex: 'homeImage',
             id: 'homeImage',
+            render: (image) => {
+                return (
+                    <Image
+                        width={50}
+
+                        src={`${process.env.REACT_APP_IMAGE_URL}/${image?.path}`}
+                    />
+                )
+            },
+        },
+        {
+            title: 'Изображения этаж',
+            dataIndex: 'floorImage',
+            id: 'floorImage',
             render: (image) => {
                 return (
                     <Image

@@ -18,7 +18,7 @@ export const DarkSidebar = {
 };
 export const LightSidebar = {
   sidebarBgColor: '#fff',
-  sidebarTextColor: 'rgba(0, 0, 0, 0.60)',
+  sidebarTextColor: 'rgb(0, 0, 0)',
   sidebarHeaderColor: '#fff',
   sidebarMenuSelectedBgColor: '#FF5B00',
   sidebarMenuSelectedTextColor: 'rgba(255,255,255,0.87)',

@@ -12,7 +12,7 @@ const AppFooter = () => {
     return (
       <Footer className='app-main-footer'>
         <p style={{display:"flex",alignItems:"center", gap:"10px"}}>
-          Created by: <a rel={"noreferrer"} target={'_blank'} href="https://abduganiev.uz/">
+            Создать: <a rel={"noreferrer"} target={'_blank'} href="https://abduganiev.uz/">
           <img src={logoFooter} alt={'abdugainev logo'} style={{width:'30px',height:"30px", objectFit:'contain'}}/>
         </a>
         </p>

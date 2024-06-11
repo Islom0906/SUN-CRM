@@ -15,7 +15,8 @@ const initialValueForm = {
     discount: null,
     fristPay: null,
     activate: true,
-    monthCount: null
+    monthCount: null,
+    ploshadSum:null
 };
 
 
@@ -122,6 +123,7 @@ const PaymentPostEdit = () => {
                 fristPay: editPaymentData?.fristPay,
                 activate: editPaymentData?.activate,
                 monthCount: editPaymentData?.monthCount,
+                ploshadSum: editPaymentData?.ploshdSum,
             }
 
             form.setFieldsValue(edit)
@@ -221,6 +223,14 @@ const PaymentPostEdit = () => {
                             required_text={'Требуется скидка'}
                             label={'Скидка'}
                             name={'discount'}
+                        />
+                    </Col>
+                    <Col span={24}>
+                        <FormInputNumber
+                            required={true}
+                            required_text={'Требуется цена'}
+                            label={'цена за 1 квадратный метр'}
+                            name={'ploshadSum'}
                         />
                     </Col>
                 </Row>

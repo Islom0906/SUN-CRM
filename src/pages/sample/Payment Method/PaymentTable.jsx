@@ -124,6 +124,12 @@ const PaymentTable = ({data,deleteHandle,refetch}) => {
             render: (text) => <p>{text}</p>,
         },
         {
+            title: 'цена за 1 квадратный метр',
+            dataIndex: 'ploshdSum',
+            id: 'ploshdSum',
+            render: (text) => <p>{text}</p>,
+        },
+        {
             title: 'Количество месяцев',
             dataIndex: 'activate',
             id: 'activate',

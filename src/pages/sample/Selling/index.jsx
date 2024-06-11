@@ -7,21 +7,22 @@ import {PiBroomFill} from "react-icons/pi";
 import {pdf} from "@react-pdf/renderer";
 import CreatPDF from "./creat-PDF";
 import {saveAs} from 'file-saver'
+
 const Index = () => {
     const [form] = Form.useForm();
     const [filterStatus, setFilterStatus] = useState("")
     const [filterId, setFilterId] = useState({
-        slotId:null,
-        houseId:null,
-        floorId:null
+        slotId: null,
+        houseId: null,
+        floorId: null
     })
     const [pdfId, setPdfId] = useState(null)
     const [isLoadingPdf, setIsLoadingPdf] = useState(false)
 
     // create pdf
-    const {data:pdfData, refetch:pdfFeatch,isSuccess} = useQuery(
+    const {data: pdfData, refetch: pdfFeatch, isSuccess} = useQuery(
         'get-pdf',
-        () => apiService.getDataByID('/PdfData',pdfId),
+        () => apiService.getDataByID('/PdfData', pdfId),
         {
             enabled: false,
         },
@@ -37,7 +38,7 @@ const Index = () => {
         },
     );
     // query-house-get
-    const {data: houseData, refetch: houseFetch,remove:removeHouse} = useQuery(
+    const {data: houseData, refetch: houseFetch} = useQuery(
         'get-house',
         () => apiService.getData(`/House?slotId=${filterId?.slotId}`),
         {
@@ -46,7 +47,7 @@ const Index = () => {
     );
 
     // query-floor-get
-    const {data: floorData, refetch: floorFetch,remove:removeFloor} = useQuery(
+    const {data: floorData, refetch: floorFetch, remove: removeFloor} = useQuery(
         'get-floor',
         () => apiService.getData(`/Floor?housId=${filterId?.houseId}`),
         {
@@ -56,11 +57,11 @@ const Index = () => {
 
     // get apartment
     const {
-        data:apartmentData,
+        data: apartmentData,
         isLoading: getLoading,
         refetch
-    } = useQuery('selling-apartment-get', () => apiService.getData(`/Apartment/?${filterStatus ? `status=${filterStatus}` : ""}${filterId?.slotId ?`&SlotId=${filterId?.slotId}`:""}${filterId?.houseId ?`&HouseId=${filterId?.houseId}`:""}${filterId?.floorId ?`&FlorId=${filterId?.floorId}`:""}`), {
-        // enabled:false,
+    } = useQuery('selling-apartment-get', () => apiService.getData(`/Apartment/?${filterStatus ? `status=${filterStatus}` : ""}${filterId?.slotId ? `&SlotId=${filterId?.slotId}` : ""}${filterId?.houseId ? `&HouseId=${filterId?.houseId}` : ""}${filterId?.floorId ? `&FlorId=${filterId?.floorId}` : ""}`), {
+        enabled:false,
         onError: (error) => {
 
             message.error(error);
@@ -70,7 +71,7 @@ const Index = () => {
 
 
     useEffect(() => {
-        if (isSuccess&&pdfId){
+        if (isSuccess && pdfId) {
             pdf(<CreatPDF data={pdfData}/>)
                 .toBlob()
                 .then(blob => {
@@ -78,13 +79,13 @@ const Index = () => {
                     // For simplicity, let's log the blob URL
                     setIsLoadingPdf(false)
                     setPdfId(null)
-                    saveAs(blob,'SUN-Human2Human.pdf')
+                    saveAs(blob, 'SUN-Human2Human.pdf')
                 });
         }
     }, [pdfData]);
 
     useEffect(() => {
-        if (pdfId){
+        if (pdfId) {
             pdfFeatch()
         }
     }, [pdfId]);
@@ -95,15 +96,15 @@ const Index = () => {
     }, []);
     // refetch house
     useEffect(() => {
-        if (filterId?.slotId){
-        houseFetch()
+        if (filterId?.slotId) {
+            houseFetch()
 
         }
     }, [filterId?.slotId]);
 
     // refetch floor
     useEffect(() => {
-        if (filterId?.houseId){
+        if (filterId?.houseId) {
             floorFetch()
 
         }
@@ -111,7 +112,7 @@ const Index = () => {
 
     useEffect(() => {
         refetch()
-    }, [filterStatus,filterId]);
+    }, [filterStatus, filterId]);
 
     const onChangeFilterStatus = (data) => {
         setFilterStatus(data)
@@ -141,26 +142,37 @@ const Index = () => {
     }, []);
 
 
+
     // option slot
-    const optionsSlot = useMemo(() => {
-        return slotData?.result?.map((option) => {
-            return {
-                value: option?.id,
-                label: option?.name,
-            };
-        });
+    // const optionsSlot = useMemo(() => {
+    //     return slotData?.result?.map((option) => {
+    //         return {
+    //             value: option?.id,
+    //             label: option?.name,
+    //         };
+    //     });
+    // }, [slotData]);
+    //
+    //
+    // const onChangeSlot = (id) => {
+    //     form.setFieldsValue({houseId: null, floorId: null})
+    //     setFilterId({
+    //         slotId: id,
+    //         houseId: null,
+    //         floorId: null
+    //     })
+    // }
+
+    //  selected option static
+    useEffect(() => {
+        if (slotData) {
+            setFilterId({
+                slotId: slotData?.result[0]?.id,
+                houseId: null,
+                floorId: null
+            })
+        }
     }, [slotData]);
-
-
-    const onChangeSlot=(id)=>{
-        form.setFieldsValue({houseId:null,floorId:null})
-        setFilterId({
-            slotId: id,
-            houseId: null,
-            floorId: null
-        })
-    }
-
 
     // option house
     const optionsHouse = useMemo(() => {
@@ -172,9 +184,9 @@ const Index = () => {
             };
         });
     }, [houseData]);
-    const onChangeHouse=(id)=>{
-        form.setFieldsValue({floorId:null})
-        setFilterId(prevState => ({...prevState,houseId:id,floorId: null}))
+    const onChangeHouse = (id) => {
+        form.setFieldsValue({floorId: null})
+        setFilterId(prevState => ({...prevState, houseId: id, floorId: null}))
     }
 
     //option floor
@@ -186,20 +198,21 @@ const Index = () => {
             };
         });
     }, [floorData]);
-    const onChangeFloor=(id)=>{
-        setFilterId(prevState => ({...prevState,floorId:id}))
+    const onChangeFloor = (id) => {
+        setFilterId(prevState => ({...prevState, floorId: id}))
     }
 
     // clear filter
-    const clearFiler=()=>{
-        form.setFieldsValue({slotId:null,houseId:null,floorId:null,status:""})
-        setFilterId({
-            slotId: null,
-            houseId: null,
-            floorId: null
-        })
+    const clearFiler = () => {
+        form.setFieldsValue({slotId: null, houseId: null, floorId: null, status: ""})
+        // setFilterId({
+        //     slotId: null,
+        //     houseId: null,
+        //     floorId: null
+        // })
+        setFilterId(prevState => ({...prevState, houseId: null, floorId: null}))
         setFilterStatus("")
-        removeHouse()
+        // removeHouse()
         removeFloor()
     }
 
@@ -220,99 +233,120 @@ const Index = () => {
                     }}
                     autoComplete="off"
                 >
-                <Row gutter={20}>
-                    <Col span={6}>
+                    <Row gutter={20}>
+                        {/*<Col span={6}>*/}
+                        {/*    <Form.Item*/}
+                        {/*        label={'Выберите слот'}*/}
+                        {/*        name={'slotId'}*/}
+
+                        {/*        wrapperCol={{*/}
+                        {/*            span: 24,*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*        <Select*/}
+                        {/*            style={{*/}
+                        {/*                width: '100%',*/}
+                        {/*            }}*/}
+                        {/*            optionLabelProp='label'*/}
+                        {/*            onChange={onChangeSlot}*/}
+                        {/*            options={optionsSlot}*/}
+                        {/*        />*/}
+                        {/*    </Form.Item>*/}
+                        {/*</Col>*/}
+                        <Col span={6}>
+                            <Form.Item
+                                label={'Выберите дом'}
+                                name={'houseId'}
+                                wrapperCol={{
+                                    span: 24,
+                                }}
+                            >
+                                <Select
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    optionLabelProp='label'
+                                    onChange={onChangeHouse}
+                                    options={optionsHouse}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={6}>
+                            <Form.Item
+                                label={'Выберите этаж'}
+                                name={'floorId'}
+
+                                wrapperCol={{
+                                    span: 24,
+                                }}
+                            >
+                                <Select
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    optionLabelProp='label'
+                                    options={optionsFloor}
+                                    onChange={onChangeFloor}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={6}>
+                            <Form.Item
+                                label={'Фильтровать по статусу'}
+                                name={'status'}
+
+                                wrapperCol={{
+                                    span: 24,
+                                }}
+                            >
+                                <Select
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    optionLabelProp='label'
+                                    onChange={onChangeFilterStatus}
+                                    options={optionsStatusFilter}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={6}>
+
                         <Form.Item
-                            label={'Выберите слот'}
-                            name={'slotId'}
+                            label={' Очистка фильтра'}
+                            name={''}
 
                             wrapperCol={{
                                 span: 24,
                             }}
                         >
-                            <Select
-                                style={{
-                                    width: '100%',
-                                }}
-                                optionLabelProp='label'
-                                onChange={onChangeSlot}
-                                options={optionsSlot}
-                            />
+                            <Button
+                                htmlType="button"
+                                type='dashed'
+                                icon={<PiBroomFill/>}
+                                style={{width: '100%',color:'red'}}
+                                onClick={clearFiler}>
+                                Очистка фильтра
+                            </Button>
                         </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item
-                            label={'Выберите дом'}
-                            name={'houseId'}
-                            wrapperCol={{
-                                span: 24,
-                            }}
-                        >
-                            <Select
-                                style={{
-                                    width: '100%',
-                                }}
-                                optionLabelProp='label'
-                                onChange={onChangeHouse}
-                                options={optionsHouse}
-                            />
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item
-                            label={'Выберите этаж'}
-                            name={'floorId'}
+                        </Col>
 
-                            wrapperCol={{
-                                span: 24,
-                            }}
-                        >
-                            <Select
-                                style={{
-                                    width: '100%',
-                                }}
-                                optionLabelProp='label'
-                                options={optionsFloor}
-                                onChange={onChangeFloor}
-                            />
-                        </Form.Item>
-                    </Col>
-                    <Col  span={6}>
-                        <Form.Item
-                            label={'Фильтровать по статусу'}
-                            name={'status'}
-
-                            wrapperCol={{
-                                span: 24,
-                            }}
-                        >
-                        <Select
-                            style={{
-                                width: '100%',
-                            }}
-                            optionLabelProp='label'
-                            onChange={onChangeFilterStatus}
-                            options={optionsStatusFilter}
-                        />
-                        </Form.Item>
-                    </Col>
-                </Row>
+                    </Row>
 
                 </Form>
-                <Row gutter={20}>
-                    <Col offset={18} span={6}>
-                        <Button
-                            type='dashed'
-                            icon={<PiBroomFill />}
-                            style={{width: '100%'}}
-                            onClick={clearFiler}>
-                            Очистка фильтра
-                        </Button>
-                    </Col>
-                </Row>
+                {/*<Row gutter={20}>*/}
+                {/*    <Col offset={18} span={6}>*/}
+                {/*        <Button*/}
+                {/*            type='dashed'*/}
+                {/*            icon={<PiBroomFill/>}*/}
+                {/*            style={{width: '100%'}}*/}
+                {/*            onClick={clearFiler}>*/}
+                {/*            Очистка фильтра*/}
+                {/*        </Button>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
                 <Spin
                     size='medium'
-                    spinning={getLoading||isLoadingPdf}>
+                    spinning={getLoading || isLoadingPdf}>
                     <SellingTable
                         data={apartmentData?.result}
                         refetch={refetch}
