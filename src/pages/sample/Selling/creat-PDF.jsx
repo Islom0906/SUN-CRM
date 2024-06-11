@@ -281,29 +281,18 @@ export default function CreatPDF({data}) {
                                 {data?.apartmentName}
                             </Text>
                         </View>
-                        <View style={styles.row}>
-                            <View style={[styles.row, styles.marginSmY, styles.listItem,styles.widthHalf,styles.textColor]}>
-                                <Text>
-                                    Блок:
-                                </Text>
-                                <Text style={styles.dashed}>
-                                </Text>
-                                <Text style={styles.textValue}>
-                                    {data?.slotName}
-                                </Text>
-                            </View>
-                            <View style={[styles.row, styles.marginSmY, styles.listItem,styles.widthHalf,styles.textColor]}>
-                                <Text>
-                                    Дом:
-                                </Text>
-                                <Text style={styles.dashed}>
-                                </Text>
-                                <Text style={styles.textValue}>
-                                    {data?.houseName}
-                                </Text>
-                            </View>
-                        </View>
 
+
+                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                            <Text>
+                                Дом:
+                            </Text>
+                            <Text style={styles.dashed}>
+                            </Text>
+                            <Text style={styles.textValue}>
+                                {data?.houseName}
+                            </Text>
+                        </View>
                         <View style={[styles.row, styles.marginSmY, styles.listItem]}>
                             <View style={[styles.row, styles.marginSmY, styles.listItem,styles.widthHalf,styles.textColor]}>
                                 <Text>
@@ -658,8 +647,8 @@ export default function CreatPDF({data}) {
                     }
 
 
-                    <View style={{...styles.bottomInfo, marginTop: "1px"}}>
-                        <View style={[styles.row, styles.bottomText]}>
+                    <View style={{...styles.bottomInfo, marginTop: "1px" ,fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
                             <Text>
                                 Актуальный курс валют
                             </Text>
@@ -669,7 +658,7 @@ export default function CreatPDF({data}) {
                         </View>
 
                     </View>
-                    <View style={styles.bottomInfo}>
+                    <View style={styles.bottomInfo }>
                         <View style={[styles.row, styles.bottomText]}>
                             <Text>
                                 Договора заключаются и оплачиваются строго в национальной валюте Узб
@@ -677,10 +666,20 @@ export default function CreatPDF({data}) {
                         </View>
 
                     </View>
+                    <View style={{...styles.bottomInfo ,fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.bottomText, styles.textColor , ]}>
+                            <Text>
+                                Дата прайса
+                            </Text>
+                            <Text>
+                                {moment(data?.nowTime).format("DD.MM.YYYY")}
+                            </Text>
+                        </View>
 
+                    </View>
 
                     <View style={{...styles.bottomInfo, marginTop: "1px", fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText]}>
+                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
                             <Text>
                                 Менеджер
                             </Text>
@@ -691,28 +690,18 @@ export default function CreatPDF({data}) {
 
                     </View>
                     <View style={{...styles.bottomInfo, fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText]}>
+                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
                             <Text>
                                 Контакты
                             </Text>
                             <Text>
-                                {data?.sellerPhoneNumber}
+                                +{data?.sellerPhoneNumber}
                             </Text>
                         </View>
 
                     </View>
 
-                    <View style={{...styles.bottomInfo, marginTop: "3px"}}>
-                        <View style={[styles.row, styles.bottomText]}>
-                            <Text>
-                                Дата прайса
-                            </Text>
-                            <Text>
-                                {moment(data?.nowTime).format("DD.MM.YYYY")}
-                            </Text>
-                        </View>
 
-                    </View>
 
 
                     <View style={[styles.center]}>
