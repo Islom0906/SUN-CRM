@@ -21,20 +21,20 @@ const {Title} = Typography;
 
 const DealersChart = () => {
     const {user} = useAuthUser()
-    // const {data, isError, isLoading, refetch} = useQuery(
-    //     'order-get',
-    //     () => apiService.getData('Apartment/Statistics'),
-    //     {
-    //         enabled: false,
-    //         onError: (error) => {
-    //
-    //             message.error(error);
-    //         },
-    //     },
-    // );
+    const {data, isError, isLoading, refetch} = useQuery(
+        'order-get',
+        () => apiService.getData('Apartment/Statistic'),
+        {
+            enabled: false,
+            onError: (error) => {
+
+                message.error(error);
+            },
+        },
+    );
 
     const {data:dataHomeStatus, isError:errorHomeStatus, isLoading:loadingHomeStatus, refetch:refetchHomeStatus} = useQuery(
-        'order-get',
+        'get-by-status',
         () => apiService.getData('Apartment/FullStatistic'),
         {
             enabled: false,
@@ -46,24 +46,24 @@ const DealersChart = () => {
     );
 
     useEffect(() => {
-        // refetch()
+        refetch()
         refetchHomeStatus()
     }, []);
 
 
-    // const dataOrder = useMemo(() => {
-    //     if (!isLoading || !isError) {
-    //         return [];
-    //     }
-    //
-    //
-    //     data?.map((item) => {
-    //
-    //         item.dateTime = new Date(item.dateTime).toLocaleDateString();
-    //     })
-    //
-    //     return data
-    // }, [data, isLoading, isError]);
+    const dataOrder = useMemo(() => {
+        if (isLoading || isError) {
+            return [];
+        }
+
+
+        data?.map((item) => {
+
+            item.dateTime = new Date(item.dateTime).toLocaleDateString();
+        })
+        console.log(data)
+        return data
+    }, [data, isLoading, isError]);
 
 
     const dataHomeStatusChart = useMemo(() => {
@@ -101,7 +101,7 @@ const DealersChart = () => {
                     {
                         user.role[1] ?
                             <ResponsiveContainer width="100%" height={300}>
-                                <BarChart data={[]}>
+                                <BarChart data={dataOrder}>
                                     <CartesianGrid strokeDasharray="3 6"/>
                                     <XAxis dataKey="name"/>
                                     <YAxis/>
@@ -112,7 +112,7 @@ const DealersChart = () => {
                             </ResponsiveContainer>
                             :
                             <ResponsiveContainer width="100%" height={300}>
-                                <BarChart data={[]}>
+                                <BarChart data={dataOrder}>
                                     <CartesianGrid strokeDasharray="3 6"/>
                                     <XAxis dataKey="dateTime"/>
                                     <YAxis/>

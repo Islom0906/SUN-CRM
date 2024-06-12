@@ -25,8 +25,7 @@ const SignInJwtAuth = () => {
           className='sign-form'
           name='basic'
           initialValues={{
-            userName: '16' +
-                '',
+            userName: '',
             password: '',
           }}
           onFinish={signInUser}

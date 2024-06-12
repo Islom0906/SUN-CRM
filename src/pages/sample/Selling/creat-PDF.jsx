@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
     imageBg: {
         width: '100%',
 
-        height: 170,
+
         marginBottom: 8,
     },
     floorImage:{
       width:'100%',
       objectFit:'contain',
-      height:'280px',
+      height:'230px',
         marginTop:'20px'
     },
     iconList: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         width: '100%',
         objectFit: 'contain',
         objectPosition: 'center',
-        height: 500
+        height: 400
     },
     line: {
         width: 20,
@@ -378,37 +378,23 @@ export default function CreatPDF({data}) {
                         </View>
                     </View>
                 </View>
-                <View style={{...styles.center,marginTop:20}}>
-                    <Text style={styles.title}>
-                        Желаем Вам удачной покупки!
-                    </Text>
-                    <Text style={{...styles.listItem,marginTop:5,...styles.textColor}}>
-                        Расположение Вашей
-                        квартиры
-                    </Text>
-                </View>
+                {/*<View style={{...styles.center,marginTop:20}}>*/}
+                {/*    <Text style={styles.title}>*/}
+                {/*        Желаем Вам удачной покупки!*/}
+                {/*    </Text>*/}
+                {/*    <Text style={{...styles.listItem,marginTop:5,...styles.textColor}}>*/}
+                {/*        Расположение Вашей*/}
+                {/*        квартиры*/}
+                {/*    </Text>*/}
+                {/*</View>*/}
                 <View>
-                    <Image style={styles.floorImage}
-                           src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentFloorImage}`}
-                    />
-                    <View style={{...styles.row,marginTop:'10px'}}>
-                        <Image style={{...styles.imageBg, ...styles.widthHalf}} src={sunCity}/>
-                        <Image style={{...styles.imageBg, ...styles.widthHalf,objectFit:"cover"}} src={location}/>
+
+                    <View style={{marginTop:'20px'}}>
+                        <Image style={{...styles.imageBg,objectFit:"cover",height:220}} src={sunCity}/>
+                        <Image style={{...styles.imageBg,objectFit:"cover",objectPosition:'bottom',height:150}} src={location}/>
                     </View>
                 </View>
-
-                <View style={[styles.center]}>
-                    <Text style={styles.title_number}>
-                        +998 78 150 55 00
-                    </Text>
-                </View>
-            </Page>
-            <Page size={'A4'} style={styles.body}>
-                <View style={[styles.center,styles.marginLgY]}>
-                    <Image style={styles.logo} src={logo}/>
-
-                </View>
-                <View>
+                <View style={{marginTop:5}}>
                     <View>
                         <View style={[styles.row, styles.iconList]}>
                             {
@@ -437,11 +423,26 @@ export default function CreatPDF({data}) {
                         </View>
                     </View>
                 </View>
+
+                <View style={[styles.center]}>
+                    <Text style={styles.title_number}>
+                        +998 78 150 55 00
+                    </Text>
+                </View>
+            </Page>
+            <Page size={'A4'} style={styles.body}>
+                <View style={[styles.center,styles.marginLgY]}>
+                    <Image style={styles.logo} src={logo}/>
+
+                </View>
+                <View>
+                    <Image style={styles.floorImage}
+                           src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentFloorImage}`}
+                    />
+                </View>
                 <View>
                     <Image style={[styles.iconBg, styles.marginY]}
                            src={`${process.env.REACT_APP_IMAGE_URL}/${data?.apartmentHouseImage}`}/>
-                    {/*<Image style={[styles.iconBg, styles.marginY]}*/}
-                    {/*       src={image11}/>*/}
                 </View>
                 <View style={[styles.center, styles.marginY]}>
                     <Text style={styles.title_number}>
@@ -453,7 +454,12 @@ export default function CreatPDF({data}) {
                 <View style={styles.center}>
                     <Image style={styles.logo} src={logo}/>
                 </View>
+                <View style={{...styles.center,marginTop:20}}>
+                    <Text style={styles.title}>
+                        Желаем Вам удачной покупки!
+                    </Text>
 
+                </View>
                 {/*<View style={styles.marginY}>*/}
                 {/*    <View style={styles.tableList}>*/}
                 {/*        <View style={[styles.row, styles.listItem]}>*/}
@@ -559,22 +565,22 @@ export default function CreatPDF({data}) {
                                         {payment?.ploshdSum}$
                                     </Text>
                                 </View>
-                                <View style={styles.tableRow}>
-                                    <View style={styles.tableCol}>
-                                        <Text style={styles.tableCell}> Цена со скидкой {payment?.discount}%</Text>
-                                    </View>
-                                    <View style={styles.tableCol}>
+                                {/*<View style={styles.tableRow}>*/}
+                                {/*    <View style={styles.tableCol}>*/}
+                                {/*        <Text style={styles.tableCell}> Цена со скидкой {payment?.discount}%</Text>*/}
+                                {/*    </View>*/}
+                                {/*    <View style={styles.tableCol}>*/}
 
-                                        <View style={[styles.row]}>
-                                            <View style={styles.tableColRight}>
-                                                <Text style={styles.tableCell}>{payment?.skidka?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
-                                            </View>
-                                            <View style={{width:'50%'}}>
-                                                <Text style={styles.tableCell}>{payment?.skidkaSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
+                                {/*        <View style={[styles.row]}>*/}
+                                {/*            <View style={styles.tableColRight}>*/}
+                                {/*                <Text style={styles.tableCell}>{payment?.skidka?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>*/}
+                                {/*            </View>*/}
+                                {/*            <View style={{width:'50%'}}>*/}
+                                {/*                <Text style={styles.tableCell}>{payment?.skidkaSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>*/}
+                                {/*            </View>*/}
+                                {/*        </View>*/}
+                                {/*    </View>*/}
+                                {/*</View>*/}
                                 <View style={styles.tableRow}>
                                     <View style={styles.tableCol}>
                                         <Text style={styles.tableCell}> {payment?.fristPay}% предоплата</Text>
