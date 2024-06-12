@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkSUN_crm=self.webpackChunkSUN_crm||[]).push([[629],{18629:(e,s,c)=>{c.r(s),c.d(s,{default:()=>d});var h=c(52032),r=c(23882),t=c(70579);const d=()=>(0,t.jsx)("div",{children:(0,t.jsx)(h.TO,{style:{width:"100%",height:"700px"},children:(0,t.jsx)(r.A,{})})})}}]);
-//# sourceMappingURL=629.83a8e453.chunk.js.map

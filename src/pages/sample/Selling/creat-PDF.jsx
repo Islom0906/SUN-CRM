@@ -6,6 +6,7 @@ import MontserratSemiBold from '../../../assets/fonts/Montserrat-SemiBold.ttf'
 import MontserratMedium from '../../../assets/fonts/Montserrat-Medium.ttf'
 import moment from "moment";
 import logo from '../../../assets/logo-pdf.png'
+import QR from '../../../assets/QR.png'
 import location from '../../../assets/location-crm.jpg'
 import sunCity from '../../../assets/login-page.jpg'
 import parking from '../../../assets/pdf-icon/free-icon-vehicle-7162285 1.png'
@@ -13,7 +14,6 @@ import building from '../../../assets/pdf-icon/high-quality 1.png'
 import smartCity from '../../../assets/pdf-icon/smart-city 1.png'
 import locationService from '../../../assets/pdf-icon/location 1.png'
 import camera from '../../../assets/pdf-icon/free-icon-cctv 1.png'
-
 
 
 // Register fonts
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     widthHalf: {
         width: '48%'
     },
-    textColor:{
-        color:'black'
+    textColor: {
+        color: 'black'
     },
     title_gold: {
         fontSize: 14,
@@ -66,17 +66,17 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         fontFamily: 'Montserrat',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         textAlign: 'center',
         color: '#FF5B00',
     },
-    title_number:{
+    title_number: {
         fontSize: 12,
         fontFamily: 'Montserrat',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         textAlign: 'center',
         color: '#FF5B00',
-        marginTop:10
+        marginTop: 10
     },
     listItem: {
         color: '#918C86',
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
         fontSize: 10,
         textAlign: "center",
         fontFamily: 'Montserrat',
-        wordBreak:'break-word'
+        wordBreak: 'break-word'
     },
     marginSmY: {
-        marginVertical: 3,
+        marginVertical: 5,
     },
     marginLgY: {
         marginVertical: 20,
@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
     marginY: {
         marginVertical: 10,
     },
-    textValue:{
-        fontWeight:"bold",
+    textValue: {
+        fontWeight: "bold",
     },
     text: {
         margin: 12,
@@ -119,19 +119,17 @@ const styles = StyleSheet.create({
     },
     imageBg: {
         width: '100%',
-
-
         marginBottom: 8,
     },
-    floorImage:{
-      width:'100%',
-      objectFit:'contain',
-      height:'230px',
-        marginTop:'20px'
+    floorImage: {
+        width: '100%',
+        objectFit: 'contain',
+        height: '230px',
+        marginTop: '20px'
     },
     iconList: {
         flexWrap: "wrap",
-        justifyContent:'center'
+        justifyContent: 'center'
     },
 
     iconBox: {
@@ -167,7 +165,7 @@ const styles = StyleSheet.create({
     table: {
         display: 'table',
         width: 'auto',
-        marginBottom:'5px',
+        marginBottom: '5px',
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: '#FF5B00',
@@ -194,13 +192,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderLeftWidth: 0,
         borderTopWidth: 0,
-        borderBottom:0
+        borderBottom: 0
     },
     tableHeader: {
         // width:'100%',
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'center',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
         backgroundColor: '#FF5B00',
         padding: "1px 0 4px 0",
         color: 'white',
@@ -224,13 +222,13 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 12
     },
-    borderRight:{
+    borderRight: {
         borderStyle: 'solid',
         borderColor: '#fff',
         borderWidth: 1,
         borderLeftWidth: 0,
         borderTopWidth: 0,
-        borderBottom:0
+        borderBottom: 0
     }
 });
 
@@ -263,7 +261,7 @@ export default function CreatPDF({data}) {
     return (
         <Document>
             <Page size={'A4'} style={styles.body}>
-                <View style={[styles.center,styles.marginLgY]}>
+                <View style={[styles.center, styles.marginLgY]}>
                     <Image style={styles.logo} src={logo}/>
                 </View>
                 <View style={styles.row}>
@@ -271,7 +269,7 @@ export default function CreatPDF({data}) {
                         <Text style={[styles.title_gold, styles.marginY]}>
                             Информация
                         </Text>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Ваша квартира:
                             </Text>
@@ -283,7 +281,7 @@ export default function CreatPDF({data}) {
                         </View>
 
 
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Дом:
                             </Text>
@@ -294,7 +292,7 @@ export default function CreatPDF({data}) {
                             </Text>
                         </View>
                         <View style={[styles.row, styles.marginSmY, styles.listItem]}>
-                            <View style={[styles.row, styles.marginSmY, styles.listItem,styles.widthHalf,styles.textColor]}>
+                            <View style={[styles.row, styles.listItem, styles.widthHalf, styles.textColor]}>
                                 <Text>
                                     Этаж:
                                 </Text>
@@ -304,7 +302,7 @@ export default function CreatPDF({data}) {
                                     {data?.floorName}
                                 </Text>
                             </View>
-                            <View style={[styles.row, styles.marginSmY, styles.listItem,styles.widthHalf,styles.textColor]}>
+                            <View style={[styles.row, styles.listItem, styles.widthHalf, styles.textColor]}>
                                 <Text>
                                     Площадь (м2):
                                 </Text>
@@ -316,7 +314,7 @@ export default function CreatPDF({data}) {
                             </View>
 
                         </View>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Количество комнат:
                             </Text>
@@ -331,7 +329,7 @@ export default function CreatPDF({data}) {
                         <Text style={[styles.title_gold, styles.marginY]}>
                             Дополнительная информация
                         </Text>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Дата передачи ключей:
                             </Text>
@@ -342,7 +340,7 @@ export default function CreatPDF({data}) {
                                 ).format("DD.MM.YYYY")}
                             </Text>
                         </View>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Дата печати:
                             </Text>
@@ -354,7 +352,7 @@ export default function CreatPDF({data}) {
                                 ).format("DD.MM.YYYY")}
                             </Text>
                         </View>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Ваш менеджер:
                             </Text>
@@ -365,7 +363,7 @@ export default function CreatPDF({data}) {
                                 {data?.sellerName}
                             </Text>
                         </View>
-                        <View style={[styles.row, styles.marginSmY, styles.listItem,styles.textColor]}>
+                        <View style={[styles.row, styles.marginSmY, styles.listItem, styles.textColor]}>
                             <Text>
                                 Телефон менеджера:
                             </Text>
@@ -387,14 +385,22 @@ export default function CreatPDF({data}) {
                 {/*        квартиры*/}
                 {/*    </Text>*/}
                 {/*</View>*/}
-                <View>
-
-                    <View style={{marginTop:'20px'}}>
-                        <Image style={{...styles.imageBg,objectFit:"cover",height:220}} src={sunCity}/>
-                        <Image style={{...styles.imageBg,objectFit:"cover",objectPosition:'bottom',height:150}} src={location}/>
-                    </View>
+                <View style={[styles.row, {marginTop: '35px'}]}>
+                    <Image style={{...styles.imageBg, objectFit: "cover", height: 170}} src={sunCity}/>
+                    <Image style={{
+                        ...styles.imageBg,
+                        objectFit: "cover",
+                        objectPosition: 'bottom',
+                        marginLeft: '10px',
+                        height: 170
+                    }} src={location}/>
                 </View>
-                <View style={{marginTop:5}}>
+                <View style={[styles.center, {...styles.title, marginBottom: "20px",marginTop:'25px'}]}>
+                    <Text>
+                        Уникальность проекта
+                    </Text>
+                </View>
+                <View style={{marginTop: 10}}>
                     <View>
                         <View style={[styles.row, styles.iconList]}>
                             {
@@ -404,7 +410,7 @@ export default function CreatPDF({data}) {
                                         <View style={{
                                             display: "flex",
                                             alignItems: 'center',
-                                            gap: '10px',
+                                            gap: '15px',
                                             flexDirection: 'row',
                                         }}>
                                             <View style={styles.line}></View>
@@ -423,7 +429,15 @@ export default function CreatPDF({data}) {
                         </View>
                     </View>
                 </View>
-
+                <View style={[styles.row, {marginTop: '20px'}]}>
+                    <Image style={{
+                        width: 80,
+                        objectFit: "cover",
+                        objectPosition: 'bottom',
+                        height: 80,
+                        margin: '0 auto'
+                    }} src={QR}/>
+                </View>
                 <View style={[styles.center]}>
                     <Text style={styles.title_number}>
                         +998 78 150 55 00
@@ -431,7 +445,7 @@ export default function CreatPDF({data}) {
                 </View>
             </Page>
             <Page size={'A4'} style={styles.body}>
-                <View style={[styles.center,styles.marginLgY]}>
+                <View style={[styles.center, styles.marginLgY]}>
                     <Image style={styles.logo} src={logo}/>
 
                 </View>
@@ -454,114 +468,27 @@ export default function CreatPDF({data}) {
                 <View style={styles.center}>
                     <Image style={styles.logo} src={logo}/>
                 </View>
-                <View style={{...styles.center,marginTop:20}}>
+                <View style={{...styles.center, marginTop: 20}}>
                     <Text style={styles.title}>
                         Желаем Вам удачной покупки!
                     </Text>
 
                 </View>
-                {/*<View style={styles.marginY}>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Проект:*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                 Human2Human*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
 
-                {/*    </View>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Блок*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.slotName}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Дом*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.houseName}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Этаж:*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.floorName}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-                {/*    </View>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Номер квартиры:*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.apartmentName}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-
-
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Площадь квартиры (м2):*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.ploshd}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-                {/*    <View style={styles.tableList}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text>*/}
-                {/*                Количество комнат:*/}
-                {/*            </Text>*/}
-                {/*            <Text>*/}
-                {/*                {data?.roomCount}*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-                {/*    <View style={{...styles.tableList, marginTop: '10px', fontWeight: "bold"}}>*/}
-                {/*        <View style={[styles.row, styles.listItem]}>*/}
-                {/*            <Text style={{color:"black"}}>*/}
-                {/*                Базовая цена квартиры:*/}
-                {/*            </Text>*/}
-                {/*            <Text style={{color:"black"}}>*/}
-                {/*                {data?.priceDollor} $*/}
-                {/*            </Text>*/}
-                {/*        </View>*/}
-
-                {/*    </View>*/}
-
-                {/*</View>*/}
-                <View style={{marginTop:'20px'}}>
+                <View style={{marginTop: '20px'}}>
                     {
                         data?.payments?.map((payment, ind) => (
                             <View key={ind} style={styles.table}>
                                 <View style={[styles.tableHeader]}>
-                                    <Text style={{...styles.tableCell,width:'75%',textAlign:"center",...styles.borderRight}}>
+                                    <Text style={{
+                                        ...styles.tableCell,
+                                        width: '75%',
+                                        textAlign: "center", ...styles.borderRight
+                                    }}>
                                         {payment.monthCount === 0 ? '100% предоплата при Инвест договоре' : `Рассрочка при Инвест договоре с ${payment?.fristPay}% ПВ`}
                                     </Text>
 
-                                    <Text style={{...styles.tableCell,width:'25%',textAlign:'center'}}>
+                                    <Text style={{...styles.tableCell, width: '25%', textAlign: 'center'}}>
                                         {payment?.ploshdSum}$
                                     </Text>
                                 </View>
@@ -588,29 +515,34 @@ export default function CreatPDF({data}) {
                                     <View style={styles.tableCol}>
                                         <View style={[styles.row]}>
                                             <View style={styles.tableColRight}>
-                                                <Text style={styles.tableCell}>{payment?.initialPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                                <Text
+                                                    style={styles.tableCell}>{payment?.initialPayment?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} $</Text>
                                             </View>
-                                            <View style={{width:'50%'}}>
-                                                <Text style={styles.tableCell}>{payment?.initialPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                            <View style={{width: '50%'}}>
+                                                <Text
+                                                    style={styles.tableCell}>{payment?.initialPaymentSum?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} сум </Text>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
                                 {
-                                    payment?.monthCount>0
+                                    payment?.monthCount > 0
                                     &&
                                     <View style={styles.tableRow}>
                                         <View style={styles.tableCol}>
-                                            <Text style={styles.tableCell}> Сумма ежемесячных оплат ({payment?.monthCount})</Text>
+                                            <Text style={styles.tableCell}> Сумма ежемесячных оплат
+                                                ({payment?.monthCount})</Text>
                                         </View>
                                         <View style={styles.tableCol}>
 
                                             <View style={[styles.row]}>
                                                 <View style={styles.tableColRight}>
-                                                    <Text style={styles.tableCell}>{payment?.monthPayment?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                                    <Text
+                                                        style={styles.tableCell}>{payment?.monthPayment?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} $</Text>
                                                 </View>
-                                                <View style={{width:'50%'}}>
-                                                    <Text style={styles.tableCell}>{payment?.monthPaymentSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                                <View style={{width: '50%'}}>
+                                                    <Text
+                                                        style={styles.tableCell}>{payment?.monthPaymentSum?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} сум </Text>
                                                 </View>
                                             </View>
                                         </View>
@@ -640,10 +572,12 @@ export default function CreatPDF({data}) {
 
                                         <View style={[styles.row]}>
                                             <View style={styles.tableColRight}>
-                                                <Text style={styles.tableCell}>{payment?.amountExcludingSkidk?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} $</Text>
+                                                <Text
+                                                    style={styles.tableCell}>{payment?.amountExcludingSkidk?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} $</Text>
                                             </View>
-                                            <View style={{width:'50%'}}>
-                                                <Text style={styles.tableCell}>{payment?.amountExcludingSkidkSum?.toLocaleString('en-US', { style: 'decimal' }).replace(/,/g, ' ')} сум </Text>
+                                            <View style={{width: '50%'}}>
+                                                <Text
+                                                    style={styles.tableCell}>{payment?.amountExcludingSkidkSum?.toLocaleString('en-US', {style: 'decimal'}).replace(/,/g, ' ')} сум </Text>
                                             </View>
                                         </View>
                                     </View>
@@ -653,18 +587,18 @@ export default function CreatPDF({data}) {
                     }
 
 
-                    <View style={{...styles.bottomInfo, marginTop: "1px" ,fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
+                    <View style={{...styles.bottomInfo, marginTop: "1px", fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.bottomText, styles.textColor]}>
                             <Text>
                                 Актуальный курс валют
                             </Text>
-                            <Text style={{fontWeight:'bold'}}>
+                            <Text style={{fontWeight: 'bold'}}>
                                 {data?.kurs}
                             </Text>
                         </View>
 
                     </View>
-                    <View style={styles.bottomInfo }>
+                    <View style={styles.bottomInfo}>
                         <View style={[styles.row, styles.bottomText]}>
                             <Text>
                                 Договора заключаются и оплачиваются строго в национальной валюте Узб
@@ -672,8 +606,8 @@ export default function CreatPDF({data}) {
                         </View>
 
                     </View>
-                    <View style={{...styles.bottomInfo ,fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText, styles.textColor , ]}>
+                    <View style={{...styles.bottomInfo, fontWeight: "bold"}}>
+                        <View style={[styles.row, styles.bottomText, styles.textColor,]}>
                             <Text>
                                 Дата прайса
                             </Text>
@@ -685,7 +619,7 @@ export default function CreatPDF({data}) {
                     </View>
 
                     <View style={{...styles.bottomInfo, marginTop: "1px", fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
+                        <View style={[styles.row, styles.bottomText, styles.textColor]}>
                             <Text>
                                 Менеджер
                             </Text>
@@ -696,7 +630,7 @@ export default function CreatPDF({data}) {
 
                     </View>
                     <View style={{...styles.bottomInfo, fontWeight: "bold"}}>
-                        <View style={[styles.row, styles.bottomText ,styles.textColor]}>
+                        <View style={[styles.row, styles.bottomText, styles.textColor]}>
                             <Text>
                                 Контакты
                             </Text>
@@ -706,8 +640,6 @@ export default function CreatPDF({data}) {
                         </View>
 
                     </View>
-
-
 
 
                     <View style={[styles.center]}>
